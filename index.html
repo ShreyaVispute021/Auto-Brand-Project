@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AutoBrand - Playful Pastel</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron&family=Poppins&family=Quicksand&display=swap" rel="stylesheet">
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      width: 100%;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+      background: #d3d3d3;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .form-container {
+      background: linear-gradient(120deg, #fceabb, #00b6f8); /* yellow pastel inside the box */
+      width: 90%;
+      max-width: 700px;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 8px 25px rgba(255, 192, 72, 0.3);
+      margin: 20px auto;
+    }
+    h2 { 
+      text-align: center; 
+      color: #f57c00; 
+    }
+    label {
+      display: block;
+      margin-top: 20px;
+      margin-bottom: 5px;
+      color: #f57c00;
+      font-weight: 600;
+    }
+    input, textarea, select {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 10px;
+      border-radius: 8px;
+      border: 1px solid #f8b500;
+      background-color: #fff6e5;
+      font-size: 14px;
+      color: #333;
+    }
+    input:focus, textarea:focus, select:focus {
+      border-color: #f57c00;
+      outline: none;
+      box-shadow: 0 0 5px rgba(255, 163, 26, 0.5);
+    }
+    button {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(120deg, #f8b500, #f57c00);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    button:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h2>🚀 AutoBrand - Startup Generator</h2>
+
+    <form id="autoBrandForm">
+      <label for="startupName">Startup Idea / Concept:</label>
+      <textarea id="startupName" rows="3" required></textarea>
+
+      <label for="industry">Industry / Field:</label>
+      <input type="text" id="industry" required />
+
+      <label for="targetAudience">Target Audience:</label>
+      <input type="text" id="targetAudience" required />
+
+      <label for="preferences">Any Preferences:</label>
+      <textarea id="preferences" rows="3"></textarea>
+
+      <label for="competitorAnalysis">Competitor Analysis?</label>
+      <select id="competitorAnalysis">
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+      </select>
+
+      <button type="submit" id="submitBtn" disabled>Generate My Startup Kit 🚀</button>
+    </form>
+  </div>
+
+  <script>
+    const startupName = document.getElementById('startupName');
+    const submitBtn = document.getElementById('submitBtn');
+
+    function checkValidity() {
+      const requiredFields = ['startupName', 'industry', 'targetAudience'];
+      const allFilled = requiredFields.every(id => document.getElementById(id).value.trim() !== "");
+      submitBtn.disabled = !allFilled;
+    }
+
+    ['startupName', 'industry', 'targetAudience'].forEach(id => {
+      document.getElementById(id).addEventListener('input', checkValidity);
+    });
+  </script>
+</body>
+</html>

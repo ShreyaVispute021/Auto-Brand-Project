@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>AutoBrand - Playful Pastel</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron&family=Poppins&family=Quicksand&display=swap" rel="stylesheet">
+  <title>AutoBrand - Startup Generator</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
     html, body {
       margin: 0;
@@ -13,29 +13,36 @@
       width: 100%;
       box-sizing: border-box;
       font-family: 'Poppins', sans-serif;
+      /* Main background remains white as requested */
       background: #fdfdfd;
       display: flex;
       justify-content: center;
       align-items: center;
     }
     .form-container {
-      background: linear-gradient(120deg, #a0d8ef, #6bb9e0); /* sky blue pastel inside the box */
+      /* Sky blue gradient for the form container */
+      background: linear-gradient(120deg, #a6c0fe, #81d4fa);
       width: 90%;
       max-width: 700px;
       padding: 40px;
       border-radius: 20px;
-      box-shadow: 0 8px 25px rgba(187, 224, 237, 0.3);
+      /* Soft blue shadow to match the new theme */
+      box-shadow: 0 8px 25px rgba(129, 212, 250, 0.4);
       margin: 20px auto;
     }
-    h2 { 
-      text-align: center; 
-      color: #f57c00; 
+    h2 {
+      text-align: center;
+      /* A deep, professional blue for the header */
+      color: #1976D2;
+      margin-top: 0;
+      margin-bottom: 30px;
     }
     label {
       display: block;
       margin-top: 20px;
       margin-bottom: 5px;
-      color: #f57c00;
+      /* Matching deep blue for labels */
+      color: #1976D2;
       font-weight: 600;
     }
     input, textarea, select {
@@ -43,29 +50,39 @@
       padding: 12px;
       margin-bottom: 10px;
       border-radius: 8px;
-      border: 1px solid #f8b500;
-      background-color: #fff6e5;
+      /* Light blue border and very light blue background for inputs */
+      border: 1px solid #81d4fa;
+      background-color: #e3f2fd;
       font-size: 14px;
       color: #333;
+      box-sizing: border-box;
+      transition: all 0.3s ease;
     }
     input:focus, textarea:focus, select:focus {
-      border-color: #f57c00;
+      /* Brighter blue on focus for clear user feedback */
+      border-color: #1976D2;
       outline: none;
-      box-shadow: 0 0 5px rgba(255, 163, 26, 0.5);
+      box-shadow: 0 0 5px rgba(25, 118, 210, 0.5);
     }
     button {
       width: 100%;
       padding: 14px;
-      background: linear-gradient(120deg, #f8b500, #f57c00);
+      /* A vibrant blue gradient for the main call-to-action button */
+      background: linear-gradient(120deg, #42a5f5, #1976D2);
       color: white;
       border: none;
       border-radius: 10px;
       font-weight: bold;
       cursor: pointer;
       margin-top: 20px;
+      font-size: 16px;
+      transition: all 0.3s ease;
+    }
+    button:hover:not(:disabled) {
+        transform: translateY(-2px);
     }
     button:disabled {
-      background: #ccc;
+      background: #b0bec5; /* Neutral blue-grey for disabled state */
       cursor: not-allowed;
     }
   </style>
@@ -75,20 +92,20 @@
     <h2>🚀 AutoBrand - Startup Generator</h2>
 
     <form id="autoBrandForm">
-      <label for="startupName">Startup Idea / Concept:</label>
-      <textarea id="startupName" rows="3" required></textarea>
+      <label for="startupConcept">Startup Idea / Concept:</label>
+      <textarea id="startupConcept" name="startupConcept" rows="3" required></textarea>
 
       <label for="industry">Industry / Field:</label>
-      <input type="text" id="industry" required />
+      <input type="text" id="industry" name="industry" required />
 
       <label for="targetAudience">Target Audience:</label>
-      <input type="text" id="targetAudience" required />
+      <input type="text" id="targetAudience" name="targetAudience" required />
 
       <label for="preferences">Any Preferences:</label>
-      <textarea id="preferences" rows="3"></textarea>
+      <textarea id="preferences" name="preferences" rows="3"></textarea>
 
       <label for="competitorAnalysis">Competitor Analysis?</label>
-      <select id="competitorAnalysis">
+      <select id="competitorAnalysis" name="competitorAnalysis">
         <option value="yes">Yes</option>
         <option value="no">No</option>
       </select>
@@ -98,18 +115,27 @@
   </div>
 
   <script>
-    const startupName = document.getElementById('startupName');
+    // Get all required input elements and the submit button
+    const requiredInputs = [
+        document.getElementById('startupConcept'),
+        document.getElementById('industry'),
+        document.getElementById('targetAudience')
+    ];
     const submitBtn = document.getElementById('submitBtn');
 
-    function checkValidity() {
-      const requiredFields = ['startupName', 'industry', 'targetAudience'];
-      const allFilled = requiredFields.every(id => document.getElementById(id).value.trim() !== "");
+    // Function to check if all required fields are filled
+    function checkFormValidity() {
+      const allFilled = requiredInputs.every(input => input.value.trim() !== "");
       submitBtn.disabled = !allFilled;
     }
 
-    ['startupName', 'industry', 'targetAudience'].forEach(id => {
-      document.getElementById(id).addEventListener('input', checkValidity);
+    // Add an event listener to each required input to check validity on input
+    requiredInputs.forEach(input => {
+      input.addEventListener('input', checkFormValidity);
     });
+    
+    // Initial check in case the form is auto-filled
+    checkFormValidity();
   </script>
 </body>
 </html>

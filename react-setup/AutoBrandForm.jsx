@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './AutoBrandForm.css'; // Move styles here
+import callOpenAi from './callOpenAi';
 
 const AutoBrandForm = () => {
   const [formData, setFormData] = useState({
@@ -86,7 +87,7 @@ const AutoBrandForm = () => {
           <option value="no">No</option>
         </select>
 
-        <button type="submit" disabled={!isFormValid}>
+        <button type="submit" disabled={!isFormValid} onClick={<callOpenAi />}>
           Generate My Startup Kit 🚀
         </button>
       </form>

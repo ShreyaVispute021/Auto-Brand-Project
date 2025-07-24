@@ -1,7 +1,11 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Entry.css';
+import ai from './assets/ai.jpg';
+import abtus from './assets/abtus.jpeg';
 
 function Entry() {
+  const navigate = useNavigate();
   return (
     <div>
       <header>
@@ -14,20 +18,20 @@ function Entry() {
 
         <div className="card-container">
           <div className="card">
-            <img src="aboutus.png" alt="Design a site" />
+            <img src={abtus} alt="Design a site" />
             <div className="card-content">
               <h3>About US</h3>
               <p>Know about us more.</p>
-              <button>Start Knowing →</button>
+              <button onClick={() => navigate('/about')}>Start Knowing →</button>
             </div>
           </div>
 
           <div className="card">
-            <img src="ai.jpg" alt="Generate AI Structure" />
+            <img src={ai} alt="Generate AI Structure" />
             <div className="card-content">
               <h3>Generate Information for your Ideas</h3>
               <p>Answer questions to get an idea of your StartUP.</p>
-              <button>Start Generating →</button>
+              <button onClick={() => navigate('/AutoBrandForm')}>Start Generating →</button>
             </div>
           </div>
         </div>

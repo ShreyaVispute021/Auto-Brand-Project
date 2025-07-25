@@ -44,6 +44,7 @@ const AutoBrandForm = () => {
           rows="3"
           value={formData.startupConcept}
           onChange={handleChange}
+          placeholder='e.g., An AI-powered app for personalized fitness plans'
           required
         />
 
@@ -54,6 +55,7 @@ const AutoBrandForm = () => {
           name="industry"
           value={formData.industry}
           onChange={handleChange}
+          placeholder='e.g., Health & Wellness'
           required
         />
 
@@ -64,6 +66,7 @@ const AutoBrandForm = () => {
           name="targetAudience"
           value={formData.targetAudience}
           onChange={handleChange}
+          placeholder='e.g., Young professionals aged 25-40'
           required
         />
 
@@ -73,6 +76,7 @@ const AutoBrandForm = () => {
           name="preferences"
           rows="3"
           value={formData.preferences}
+          placeholder='e.g., Prefer a short, modern name; avoid using the word tech'
           onChange={handleChange}
         />
 

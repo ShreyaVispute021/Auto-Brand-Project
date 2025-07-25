@@ -4,14 +4,16 @@
   padding: 0;
 }
 
+
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: #d4e7f9;
+  background: linear-gradient(to bottom, #dcfbff, #7dcdff);
   color: #111;
 }
 
 header {
   width: 100%;
+  width: 1520px;
   height: 100px;
   padding: 0 60px;
   background: linear-gradient(to right, #7b2ff7, #f107a3);

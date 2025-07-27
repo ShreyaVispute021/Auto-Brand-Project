@@ -1,50 +1,91 @@
-body {
-  font-family: Arial, sans-serif;
-  background: linear-gradient(to bottom, #dcfbff, #7dcdff);
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+html, body {
   margin: 0;
   padding: 0;
+  height: 100%;
+  font-family: 'Poppins', sans-serif;
+  background: #d2e2e8;
+  color: #333;
+  line-height: 1.6;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
-.navbar {
+body {
+  background: linear-gradient(to bottom, #dcfbff, #7dcdff);
+}
+
+.brand-header {
   background: linear-gradient(to right, #7b2ff7, #f107a3);
-  padding: 15px 30px;
-  color: #ffffff;
+  padding: 40px 20px;
+  border-bottom: 4px solid #1976D2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: centre;
   text-align: center;
-  font-size: 2.0em;
+  width: 100%;
+  height: fit-content;
+  box-sizing: border-box;
+}
+
+.logo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 40px;
+  margin: 0;
+}
+
+.brand-name {
+  font-size: 2rem;
+  color: #ffffff;
+  margin: 0;
+  font-weight: bold;
+}
+
+.tagline {
+  font-style: italic;
+  color: #333;
+  font-size: 1rem;
+  margin: 10px 0 0 0;
+  display: block;
 }
 
 .container {
   max-width: 800px;
-  margin: 40px auto;
-  background: rgb(255, 255, 255);
+  width: 90%;
+  margin: 160px auto 40px;
   padding: 40px;
-  border-radius: 8px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  background: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(129, 212, 250, 0.25);
+  text-align: left;
+}
+
+
+h1, h2 {
+  color: #1976D2;
+  margin-bottom: 15px;
 }
 
 h1 {
-  color: #2563eb;
-  margin-bottom: 10px;
+  font-size: 2.2rem;
 }
 
 h2 {
-  margin-top: 30px;
-  color: #111827;
-}
-
-.made {
-  margin-top: 55px;
-  text-align: center;
-  color: #5d5d60;
+  font-size: 1.6rem;
 }
 
 p {
-  color: #374151;
-  line-height: 1.6;
+  color: #333;
 }
 
-footer {
-  margin-top: 60px;
+.made, footer {
   text-align: center;
+  margin-top: 40px;
   color: #6b7280;
 }

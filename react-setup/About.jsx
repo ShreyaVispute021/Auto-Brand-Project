@@ -1,14 +1,14 @@
 import React from 'react';
 import './About.css';
 
-
-
 function About() {
   return (
     <div>
-      <div className="navbar">
-        AutoBrand
-      </div>
+      <header className="brand-header">
+        <div className="logo">🚀</div>
+        <h1 className="brand-name">AutoBrand</h1>
+        <p className="tagline">Transform your startup vision into a powerful brand identity</p>
+      </header>
 
       <div className="container">
         <h1>About Us</h1>

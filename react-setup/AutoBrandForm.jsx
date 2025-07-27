@@ -1,102 +1,136 @@
-import React, { useState, useEffect } from 'react';
-import './AutoBrandForm.css'; // Move styles here
-import callOpenAi from './callOpenAi';
+import React, { useState } from 'react';
+import './AutoBrandForm.css';
+import { useNavigate } from 'react-router-dom';
 
-const AutoBrandForm = () => {
+export default function LandingPage() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    startupConcept: '',
+    startupIdea: '',
     industry: '',
     targetAudience: '',
     preferences: '',
-    competitorAnalysis: 'yes',
+    competitorAnalysis: ''
   });
-
-  const [isFormValid, setIsFormValid] = useState(false);
-
-  useEffect(() => {
-    const { startupConcept, industry, targetAudience } = formData;
-    setIsFormValid(
-      startupConcept.trim() !== '' &&
-      industry.trim() !== '' &&
-      targetAudience.trim() !== ''
-    );
-  }, [formData]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    console.log('Input:', e.target.name, 'Value:', e.target.value);
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const isValid = formData.startupIdea && formData.industry && formData.targetAudience;
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form Submitted:', formData);
-    // Add submission logic here
+    console.log('Form submitted with:', formData);
+    if (!isValid) {
+      setError('Please fill all required fields');
+      return;
+    }
+
+    setLoading(true);
+    setError('');
+
+    try {
+      await new Promise(res => setTimeout(res, 10));
+      console.log('Storing data in localStorage');
+      localStorage.setItem('brandingFormData', JSON.stringify(formData));
+      localStorage.setItem('brandingResults', JSON.stringify({
+        names: ['BrandA', 'BrandB', 'BrandC'],
+        taglines: ['Empower Your Future', 'Innovate Today', 'Create Tomorrow'],
+        marketingIdeas: ['Idea 1', 'Idea 2', 'Idea 3'],
+        logos: ['https://via.placeholder.com/200'],
+        colorThemes: [{ name: 'Primary Palette', colors: ['#1976D2', '#81d4fa', '#a6c0fe'] }],
+        usps: ['USP 1', 'USP 2']
+      }));
+      console.log('Navigating to /results');
+      navigate('/result');
+    } catch (err) {
+      console.error('Error:', err);
+      setError('Something went wrong!');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
-    <div className="form-container">
-      <h2>🚀 AutoBrand - Startup Generator</h2>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="startupConcept">Startup Idea / Concept:</label>
-        <textarea
-          id="startupConcept"
-          name="startupConcept"
-          rows="3"
-          value={formData.startupConcept}
-          onChange={handleChange}
-          placeholder='e.g., An AI-powered app for personalized fitness plans'
-          required
-        />
+    <div className="landing-page">
+      <header className="brand-header">
+        <div className="logo">🚀</div>
+        <h1 className="brand-name">AutoBrand</h1>
+        <p className="tagline">Transform your startup vision into a powerful brand identity</p>
+      </header>
 
-        <label htmlFor="industry">Industry / Field:</label>
-        <input
-          type="text"
-          id="industry"
-          name="industry"
-          value={formData.industry}
-          onChange={handleChange}
-          placeholder='e.g., Health & Wellness'
-          required
-        />
+      <main className="main-container">
+        <form onSubmit={handleSubmit} className="form-section">
+          <h2>Tell Us About Your Startup Vision</h2>
+          {error && <div className="error-message">{error}</div>}
 
-        <label htmlFor="targetAudience">Target Audience:</label>
-        <input
-          type="text"
-          id="targetAudience"
-          name="targetAudience"
-          value={formData.targetAudience}
-          onChange={handleChange}
-          placeholder='e.g., Young professionals aged 25-40'
-          required
-        />
+          <div className="form-group" key="startupIdea">
+            <label>Startup Idea / Concept *</label>
+            <textarea
+              name="startupIdea"
+              value={formData.startupIdea}
+              onChange={handleChange}
+              required
+              placeholder="e.g., An AI-powered app for personalized fitness plans"
+            />
+          </div>
 
-        <label htmlFor="preferences">Any Preferences:</label>
-        <textarea
-          id="preferences"
-          name="preferences"
-          rows="3"
-          value={formData.preferences}
-          placeholder='e.g., Prefer a short, modern name; avoid using the word tech'
-          onChange={handleChange}
-        />
+          <div className="form-group" key="industry">
+            <label>Industry / Field *</label>
+            <input
+              name="industry"
+              value={formData.industry}
+              onChange={handleChange}
+              required
+              placeholder="e.g., Health & Wellness"
+            />
+          </div>
 
-        <label htmlFor="competitorAnalysis">Competitor Analysis?</label>
-        <select
-          id="competitorAnalysis"
-          name="competitorAnalysis"
-          value={formData.competitorAnalysis}
-          onChange={handleChange}
-        >
-          <option value="yes">Yes</option>
-          <option value="no">No</option>
-        </select>
+          <div className="form-group" key="targetAudience">
+            <label>Target Audience *</label>
+            <textarea
+              name="targetAudience"
+              value={formData.targetAudience}
+              onChange={handleChange}
+              required
+              placeholder="e.g., Young professionals aged 25-40"
+            />
+          </div>
 
-        <button type="submit" disabled={!isFormValid} onClick={<callOpenAi />}>
-          Generate My Startup Kit 🚀
-        </button>
-      </form>
+          <div className="form-group" key="preferences">
+            <label>Brand Preferences (Optional)</label>
+            <textarea
+              name="preferences"
+              value={formData.preferences}
+              onChange={handleChange}
+              placeholder="e.g., Prefer a short, modern name"
+            />
+          </div>
+
+          <div className="form-group" key="competitorAnalysis">
+            <label>Competitor Analysis (Optional)</label>
+            <textarea
+              name="competitorAnalysis"
+              value={formData.competitorAnalysis}
+              onChange={handleChange}
+            />
+          </div>
+
+          <button type="submit" disabled={!isValid || loading} className="submit-btn">
+            {loading ? (
+              <span className="loading-spinner">
+                <div className="spinner"></div>
+                Generating Your Brand Identity...
+              </span>
+            ) : (
+              '🎨 Generate My Brand Identity'
+            )}
+          </button>
+        </form>
+      </main>
     </div>
   );
-};
-
-export default AutoBrandForm;
+}

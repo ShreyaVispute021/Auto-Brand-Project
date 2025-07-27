@@ -8,8 +8,10 @@ function Entry() {
   const navigate = useNavigate();
   return (
     <div>
-      <header>
-        <div className="logo">&#9632; AutoBrand</div>
+      <header className="brand-header">
+        <div className="logo">🚀</div>
+        <h1 className="brand-name">AutoBrand</h1>
+        <p className="tagline">Transform your startup vision into a powerful brand identity</p>
       </header>
 
       <div className="main-content">
@@ -31,7 +33,7 @@ function Entry() {
             <div className="card-content">
               <h3>Generate Information for your Ideas</h3>
               <p>Answer questions to get an idea of your StartUP.</p>
-              <button onClick={() => navigate('/AutoBrandForm')}>Start Generating →</button>
+              <button onClick={() => navigate('/autobrandform')}>Start Generating →</button>
             </div>
           </div>
         </div>

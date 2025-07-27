@@ -1,79 +1,180 @@
-html, body {
-  margin: 0;
-  padding: 0;
-  min-height: 100vh;
-  width: 100%;
+.landing-page {
   font-family: 'Poppins', sans-serif;
   background: linear-gradient(to bottom, #dcfbff, #7dcdff);
+  min-height: 100vh;
+}
+
+.brand-header {
+  background: linear-gradient(to right, #7b2ff7, #f107a3);
+  padding: 40px 20px;
+  border-bottom: 4px solid #1976D2;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+  justify-content: centre;
+  text-align: center;
+  width: 100%;
+  height: fit-content;
   box-sizing: border-box;
 }
 
-.form-container {
-  background: linear-gradient(90deg, #7b2ff7, #f107a3);
-  width: 90%;
-  width: 700px;
+.logo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 40px;
+  margin: 0;
+}
+
+.brand-name {
+  font-size: 2rem;
+  color: #ffffff;
+  margin: 0;
+  font-weight: bold;
+}
+
+.tagline {
+  font-style: italic;
+  color: #333;
+  font-size: 1rem;
+  margin: 10px 0 0 0;
+  display: block;
+}
+
+.main-container {
+  max-width: 900px;
+  margin: 120px auto 60px;
+  padding: 20px;
+}
+
+.form-section {
+  background: #ffffff;
   padding: 40px;
   border-radius: 20px;
-  box-shadow: 0 8px 25px rgba(129, 212, 250, 0.4);
-  margin: 20px auto;
+  box-shadow: 0 8px 25px rgba(129, 212, 250, 0.15);
+  border: 1px solid rgba(129, 212, 250, 0.1);
 }
 
-h2 {
+.form-section h2 {
+  color: #1976D2;
+  margin-bottom: 25px;
+  font-size: 2rem;
   text-align: center;
-  color: #ffffff;
-  margin-top: 0;
-  margin-bottom: 30px;
 }
 
-label {
-  display: block;
-  margin-top: 20px;
-  margin-bottom: 5px;
-  color: #ffffff;
-  font-weight: 600;
-}
-
-input, textarea, select {
-  width: 100%;
-  padding: 12px;
-  margin-bottom: 10px;
+.error-message {
+  background: #ffebee;
+  color: #c62828;
+  padding: 15px;
   border-radius: 8px;
-  border: 1px solid #81d4fa;
-  background-color: #e3f2fd;
-  font-size: 14px;
-  color: #333;
-  box-sizing: border-box;
-  transition: all 0.3s ease;
+  margin-bottom: 20px;
+  border: 1px solid #ef9a9a;
 }
 
-input:focus, textarea:focus, select:focus {
+.form-group {
+  margin-bottom: 25px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #1976D2;
+  font-size: 16px;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 15px;
+  border-radius: 10px;
+  border: 2px solid #81d4fa;
+  background-color: #f8fbff;
+  font-size: 15px;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+  transition: all 0.3s ease;
+  resize: vertical;
+}
+
+.form-group textarea {
+  min-height: 80px;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  color: black;
   border-color: #1976D2;
   outline: none;
-  box-shadow: 0 0 5px rgba(25, 118, 210, 0.5);
 }
 
-button {
+.submit-btn {
   width: 100%;
-  padding: 14px;
-  background: linear-gradient(120deg, #99ccf5, #1976D2);
+  padding: 18px;
+  background: linear-gradient(120deg, #42a5f5, #1976D2);
   color: white;
   border: none;
-  border-radius: 10px;
+  border-radius: 12px;
+  font-size: 18px;
   font-weight: bold;
   cursor: pointer;
-  margin-top: 20px;
-  font-size: 16px;
+  margin-top: 10px;
   transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
 }
 
-button:hover:not(:disabled) {
-  transform: translateY(-2px);
-}
-
-button:disabled {
+.submit-btn:disabled {
   background: #b0bec5;
   cursor: not-allowed;
+}
+
+.submit-btn:not(:disabled):hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(25, 118, 210, 0.3);
+}
+
+.loading-spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ffffff;
+  border-top: 2px solid transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-right: 10px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@media (max-width: 768px) {
+  .brand-header {
+    flex-direction: column;
+    text-align: center;
+    padding: 15px;
+  }
+
+  .logo {
+    font-size: 30px;
+  }
+
+  .brand-name {
+    font-size: 1.5rem;
+  }
+
+  .tagline {
+    font-size: 0.9rem;
+    max-width: 100%;
+    text-align: center;
+  }
 }

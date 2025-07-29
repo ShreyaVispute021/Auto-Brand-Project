@@ -1,11 +1,11 @@
 .landing-page {
   font-family: 'Poppins', sans-serif;
-  background: linear-gradient(to bottom, #dcfbff, #7dcdff);
+  background-color: white;
   min-height: 100vh;
 }
 
 .brand-header {
-  background: linear-gradient(to right, #7b2ff7, #f107a3);
+  background: linear-gradient(120deg, #a6c0fe, #81d4fa);
   padding: 40px 20px;
   border-bottom: 4px solid #1976D2;
   display: flex;
@@ -30,7 +30,7 @@
 
 .brand-name {
   font-size: 2rem;
-  color: #ffffff;
+  color: #1976D2;
   margin: 0;
   font-weight: bold;
 }

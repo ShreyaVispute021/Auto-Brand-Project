@@ -13,11 +13,12 @@ html, body {
 }
 
 body {
-  background: linear-gradient(to bottom, #dcfbff, #7dcdff);
+  /* background: linear-gradient(to bottom, #dcfbff, #7dcdff); */
+  background-color: white;
 }
 
 .brand-header {
-  background: linear-gradient(to right, #7b2ff7, #f107a3);
+  background: linear-gradient(120deg, #a6c0fe, #81d4fa);
   padding: 40px 20px;
   border-bottom: 4px solid #1976D2;
   display: flex;

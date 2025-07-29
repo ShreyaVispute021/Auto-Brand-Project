@@ -58,7 +58,7 @@ export default function LandingPage() {
     <div className="landing-page">
       <header className="brand-header">
         <div className="logo">🚀</div>
-        <h1 className="brand-name">AutoBrand</h1>
+        <h1 className="brand-name">Auto Brand</h1>
         <p className="tagline">Transform your startup vision into a powerful brand identity</p>
       </header>
 

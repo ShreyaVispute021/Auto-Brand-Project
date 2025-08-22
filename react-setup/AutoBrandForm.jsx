@@ -22,37 +22,34 @@ export default function LandingPage() {
   const isValid = formData.startupIdea && formData.industry && formData.targetAudience;
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    console.log('Form submitted with:', formData);
-    if (!isValid) {
-      setError('Please fill all required fields');
-      return;
-    }
+  e.preventDefault();
+  if (!isValid) {
+    setError('Please fill all required fields');
+    return;
+  }
 
-    setLoading(true);
-    setError('');
+  setLoading(true);
+  setError('');
 
-    try {
-      await new Promise(res => setTimeout(res, 10));
-      console.log('Storing data in localStorage');
-      localStorage.setItem('brandingFormData', JSON.stringify(formData));
-      localStorage.setItem('brandingResults', JSON.stringify({
-        names: ['BrandA', 'BrandB', 'BrandC'],
-        taglines: ['Empower Your Future', 'Innovate Today', 'Create Tomorrow'],
-        marketingIdeas: ['Idea 1', 'Idea 2', 'Idea 3'],
-        logos: ['https://via.placeholder.com/200'],
-        colorThemes: [{ name: 'Primary Palette', colors: ['#1976D2', '#81d4fa', '#a6c0fe'] }],
-        usps: ['USP 1', 'USP 2']
-      }));
-      console.log('Navigating to /results');
-      navigate('/result');
-    } catch (err) {
-      console.error('Error:', err);
-      setError('Something went wrong!');
-    } finally {
-      setLoading(false);
-    }
-  };
+  try {
+    const response = await fetch('http://localhost:5000/api/generate-brand', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData),
+    });
+
+    const brandingData = await response.json();
+    localStorage.setItem('brandingFormData', JSON.stringify(formData));
+    localStorage.setItem('brandingResults', JSON.stringify(brandingData));
+    navigate('/result');
+  } catch (err) {
+    console.error('API error:', err);
+    setError('Something went wrong while generating your brand. Please try again.');
+  } finally {
+    setLoading(false);
+  }
+};
+
 
   return (
     <div className="landing-page">
